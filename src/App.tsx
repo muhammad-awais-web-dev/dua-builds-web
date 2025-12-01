@@ -1,35 +1,222 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useGSAP } from "@gsap/react";
+import gsap, { ScrollTrigger, SplitText } from "gsap/all";
+import { useRef } from "react";
+import { Projects } from "./Data/Projects";
+
+gsap.registerPlugin(ScrollTrigger, SplitText);
 
 function App() {
-  const [count, setCount] = useState(0)
+  const pinContainer = useRef(null);
+  const heroContainer = useRef(null);
+  const ParentContainer = useRef(null);
+  const AboutParaRef = useRef(null);
+  const projectsContainer = useRef(null);
+  const CertificatesRef = useRef(null);
+  useGSAP(() => {
+    if (
+      heroContainer.current &&
+      ParentContainer.current &&
+      pinContainer.current
+    ) {
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: pinContainer.current,
+          start: "top top",
+          end: "top -100%",
+          scrub: 2,
+          pin: true,
+        },
+      });
+
+      tl.to(heroContainer.current, {
+        xPercent: 50,
+        ease: "power1.inOut",
+      });
+      tl.to(
+        ParentContainer.current,
+        {
+          xPercent: 100,
+          ease: "power1.inOut",
+        },
+        "<"
+      );
+    }
+    if (AboutParaRef.current) {
+      const split = new SplitText(AboutParaRef.current, {
+        type: "words,chars",
+      });
+      gsap.from(split.chars, {
+        color: "#ffffff55",
+        stagger: 0.1,
+        scrollTrigger: {
+          trigger: AboutParaRef.current,
+          start: "top 80%",
+          end: "bottom 60%",
+          scrub: 1,
+        },
+      });
+    }
+    if (projectsContainer.current) {
+      let ProjectTiles = gsap.utils.toArray("#projectsContainer > div");
+      ProjectTiles = ProjectTiles.splice(1);
+      console.log(ProjectTiles);
+      const projTl = gsap.timeline({
+        scrollTrigger: {
+          trigger: projectsContainer.current,
+          start: "top top",
+          end: `top -350%`,
+          scrub: 1,
+          pin: true,
+        },
+      });
+      projTl.fromTo(
+        ProjectTiles,
+        {
+          y: "150%",
+        },
+        {
+          y: "0%",
+          stagger: 1,
+          duration: 1,
+        }
+      );
+    }
+  });
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <main className="bg-[#111] min-h-screen min-w-full">
+        <div ref={pinContainer} className=" h-screen w-full relative">
+          <div className="w-full h-full absolute top-0 left-0">
+            <video
+              src="video/Abstaract.mp4"
+              className="w-full h-full object-cover"
+              autoPlay
+              muted
+              loop
+            ></video>
+          </div>
+          <div
+            ref={ParentContainer}
+            className=" h-full w-1/2 overflow-hidden flex flex-row justify-end items-center relative "
+          >
+            <div
+              ref={heroContainer}
+              className=" h-full min-w-screen flex flex-row-reverse"
+            >
+              <div className="h-full w-1/2 bg-white/30 backdrop-blur-md flex flex-col justify-center items-center text-center gap-10 p-10">
+                <h1 className=" font-[Dancing-Script] text-7xl ">
+                  Welcome To My Portfolio
+                </h1>
+                <p className=" text-xl ">
+                  Hi, I’m{" "}
+                  <span className="text-[#5e3a00] font-bold">Dua Fatima,</span>{" "}
+                  <br /> an aspiring Front-End Web Developer passionate about
+                  creativity, clean design, and modern web experiences. Explore
+                  my work, learn more about me, and see how I’m growing on my
+                  journey into web development.
+                </p>
+              </div>
+              <div className="h-full w-1/2 bg-black/30 backdrop-blur-md flex flex-col justify-center items-center text-center gap-10 p-10 text-white">
+                <h2 className=" font-[Montserrat] font-thin text-2xl  ">
+                  Front-End Web Developer (In Progress) | CIT & CBT Certified
+                </h2>
+                <p className=" font-[inter] font-regular text-lg">
+                  I’m currently learning JavaScript and building responsive,
+                  user-friendly digital experiences. I love designing simple,
+                  meaningful interfaces and turning creative ideas into
+                  functional web projects.
+                  <br />
+                  My focus is on continuous learning, improving my skills, and
+                  growing into a confident modern web developer.
+                  <br />
+                  I’m open to internships, training-based roles, and entry-level
+                  opportunities where I can apply my skills and keep learning.
+                  <br />
+                  Let’s connect and create something great together!
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className=" text-white p-32 w-full h-fit flex flex-col gap-10 ">
+          <h2 className=" font-[Dancing-Script] text-7xl ">Get to Know Me</h2>
+          <h3 className=" font-[Dancing-Script] text-4xl text-white/80 ">
+            A little bit about myself
+          </h3>
+          <p
+            ref={AboutParaRef}
+            className=" font-[montserrat] font-regular max-w-11/12 md:max-w-4/5 text-2xl md:text-3xl"
+          >
+            I didn’t start with coding, I started with a love for creating
+            things. Through my CIT and CBT courses, I discovered how much I
+            enjoy working with digital tools and turning small ideas into
+            something visual. That curiosity eventually led me to web
+            development, where creativity meets logic in the best way. As I
+            continue learning at SMIT, I’m building projects that help me
+            understand how real digital experiences are made. Each step
+            motivates me to grow, improve, and explore where this journey in
+            modern web development can take me.
+          </p>
+        </div>
+        <div
+          ref={projectsContainer}
+          className=" text-white p-32 w-full min-h-screen flex flex-col gap-10 "
+        >
+          <h2 className=" font-[Dancing-Script] text-5xl lg:text-7xl ">
+            Explore My Projects
+          </h2>
+          <h3 className=" font-[Dancing-Script] text-2xl md:text-4xl text-white/80 ">
+            A collection of beginner-friendly yet functional projects created
+            using HTML, CSS, JavaScript (in progress), and UI design principles.
+          </h3>
+          <div
+            id="projectsContainer"
+            className=" h-fit grid grid-cols-1 relative w-full bg-amber-300"
+          >
+            {Projects.map((project) => {
+              return (
+                <div className="w-full h-[60vh] border-black border-2 flex flex-col  lg:flex-row justify-center items-center rounded-2xl overflow-hidden absolute bg-white/50 text-black backdrop-blur-2xl top-0">
+                  <div className=" h-full w-full lg:w-4/5 relative flex justify-center items-center p-2 md:p-10 rounded-2xl">
+                    <img
+                      src={project.ImageLink}
+                      alt={project.title}
+                      className=" object-cover rounded-2xl"
+                    />
+                  </div>
+                  <div className=" h-full w-full lg:w-2/5 relative flex flex-col justify-center items-center p-2 gap-5 lg:gap-10 text-center">
+                    <h3 className=" text-4xl md:text-5xl font-bold font-[Dancing-Script] ">
+                      {project.title}
+                    </h3>
+                    <p className="text-xl md:text-xl font-[montserrat] ">
+                      {" "}
+                      {project.description}{" "}
+                    </p>
+                    <div className="buttons flex flex-row gap-10 text-md md:text-2xl font-[montserrat] ">
+                      <a
+                        href={project.githubLink}
+                        className=" border-black border-2 px-4 py-2 rounded-full hover:bg-white transition-color duration-300  "
+                      >
+                        GitHub
+                      </a>
+                      <a
+                        href={project.netlifyLink}
+                        className=" border-black border-2 px-4 py-2 rounded-full hover:bg-white transition-color duration-300  "
+                      >
+                        Live Demo
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+        <div ref={CertificatesRef} id="Certificates" className="h-screen w-full bg-red-950" >
+        </div>
+      </main>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
