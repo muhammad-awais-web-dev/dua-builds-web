@@ -1,12 +1,6 @@
 @import "tailwindcss";
-@font-face {
-  font-family: 'Dancing-Script';
-  src: url(fonts/DancingScript-VariableFont_wght.ttf);
-}
-@font-face {
-  font-family: 'Montserrat';
-  src: url(fonts/Montserrat-VariableFont_wght.ttf);
-}
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
 #Skills-Container path{
   fill: white;
 }

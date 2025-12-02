@@ -151,7 +151,7 @@ function App() {
               className=" h-full min-w-screen flex flex-row-reverse"
             >
               <div className="h-full w-1/2 bg-white/30 backdrop-blur-md flex flex-col justify-center items-center text-center gap-10 p-10">
-                <h1 className=" font-[Dancing-Script] text-7xl ">
+                <h1 className="text-7xl" style={{ fontFamily: "'Dancing Script', cursive" }}>
                   Welcome To My Portfolio
                 </h1>
                 <p className=" text-xl ">
@@ -164,10 +164,10 @@ function App() {
                 </p>
               </div>
               <div className="h-full w-1/2 bg-black/30 backdrop-blur-md flex flex-col justify-center items-center text-center gap-10 p-10 text-white">
-                <h2 className=" font-[Montserrat] font-thin text-2xl  ">
+                <h2 className="font-thin text-2xl" style={{ fontFamily: "'Montserrat', sans-serif" }}>
                   Front-End Web Developer (In Progress) | CIT & CBT Certified
                 </h2>
-                <p className=" font-[inter] font-regular text-lg">
+                <p className="text-lg" style={{ fontFamily: "'Montserrat', sans-serif" }}>
                   I’m currently learning JavaScript and building responsive,
                   user-friendly digital experiences. I love designing simple,
                   meaningful interfaces and turning creative ideas into
@@ -186,13 +186,14 @@ function App() {
           </div>
         </div>
         <div className=" text-white p-32 w-full h-fit flex flex-col gap-10 ">
-          <h2 className=" font-[Dancing-Script] text-7xl ">Get to Know Me</h2>
-          <h3 className=" font-[Dancing-Script] text-4xl text-white/80 ">
+          <h2 className="text-7xl" style={{ fontFamily: "'Dancing Script', cursive" }}>Get to Know Me</h2>
+          <h3 className="text-4xl text-white/80" style={{ fontFamily: "'Dancing Script', cursive" }}>
             A little bit about myself
           </h3>
           <p
             ref={AboutParaRef}
-            className=" font-[montserrat] font-regular max-w-11/12 md:max-w-4/5 text-2xl md:text-3xl"
+            className="font-regular max-w-11/12 md:max-w-4/5 text-2xl md:text-3xl"
+            style={{ fontFamily: "'Montserrat', sans-serif" }}
           >
             I didn’t start with coding, I started with a love for creating
             things. Through my CIT and CBT courses, I discovered how much I
@@ -209,10 +210,10 @@ function App() {
           ref={projectsContainer}
           className=" text-white p-32 w-full min-h-screen flex flex-col gap-10 "
         >
-          <h2 className=" font-[Dancing-Script] text-5xl lg:text-7xl ">
+          <h2 className="text-5xl lg:text-7xl" style={{ fontFamily: "'Dancing Script', cursive" }}>
             Explore My Projects
           </h2>
-          <h3 className=" font-[Dancing-Script] text-2xl md:text-4xl text-white/80 ">
+          <h3 className="text-2xl md:text-4xl text-white/80" style={{ fontFamily: "'Dancing Script', cursive" }}>
             A collection of beginner-friendly yet functional projects created
             using HTML, CSS, JavaScript (in progress), and UI design principles.
           </h3>
@@ -231,14 +232,14 @@ function App() {
                     />
                   </div>
                   <div className=" h-full w-full lg:w-2/5 relative flex flex-col justify-center items-center p-2 gap-5 lg:gap-10 text-center">
-                    <h3 className=" text-4xl md:text-5xl font-bold font-[Dancing-Script] ">
+                    <h3 className="text-4xl md:text-5xl font-bold" style={{ fontFamily: "'Dancing Script', cursive" }}>
                       {project.title}
                     </h3>
-                    <p className="text-xl md:text-xl font-[montserrat] ">
+                    <p className="text-xl md:text-xl" style={{ fontFamily: "'Montserrat', sans-serif" }}>
                       {" "}
                       {project.description}{" "}
                     </p>
-                    <div className="buttons flex flex-row gap-10 text-md md:text-2xl font-[montserrat] ">
+                    <div className="buttons flex flex-row gap-10 text-md md:text-2xl" style={{ fontFamily: "'Montserrat', sans-serif" }}>
                       <a
                         href={project.githubLink}
                         className=" border-black border-2 px-4 py-2 rounded-full hover:bg-white transition-color duration-300  "
@@ -262,15 +263,15 @@ function App() {
           id="Certificates"
           className=" text-white  w-full h-fit flex flex-col justify-between items-center gap-10"
         >
-          <h2 className="p-32 font-[Dancing-Script] text-5xl lg:text-7xl ">
+          <h2 className="p-32 text-5xl lg:text-7xl" style={{ fontFamily: "'Dancing Script', cursive" }}>
             Certificates
           </h2>
           <div className="grid grid-cols-1 p-10 md:grid-cols-2 max-w-[1140px] gap-10  ">
             <div className=" bg-white/40 backdrop-blur-2xl rounded-2xl p-10 flex flex-col gap-10">
-              <h3 className="font-[Dancing-Script] text-2xl  ">
+              <h3 className="text-2xl" style={{ fontFamily: "'Dancing Script', cursive" }}>
                 CIT - Certificate in Information Technology
               </h3>
-              <p className="font-[montserrat] text-xl font-thin ">
+              <p className="text-xl font-thin" style={{ fontFamily: "'Montserrat', sans-serif" }}>
                 Completed foundational IT training focused on MS Office,
                 documentation, basic Canva design, file organization, and
                 essential computer concepts. This program strengthened my
@@ -278,10 +279,10 @@ function App() {
               </p>
             </div>
             <div className=" bg-white/40 backdrop-blur-2xl rounded-2xl p-10 flex flex-col gap-10">
-              <h3 className="font-[Dancing-Script] text-2xl  ">
+              <h3 className="text-2xl" style={{ fontFamily: "'Dancing Script', cursive" }}>
                 CIT - Certificate in Information Technology
               </h3>
-              <p className="font-[montserrat] text-xl font-thin ">
+              <p className="text-xl font-thin" style={{ fontFamily: "'Montserrat', sans-serif" }}>
                 Completed foundational IT training focused on MS Office,
                 documentation, basic Canva design, file organization, and
                 essential computer concepts. This program strengthened my
@@ -308,14 +309,14 @@ function App() {
               />
             </div>
             <div className="w-full h-full  flex flex-col justify-center p-20 gap-10 items-center ">
-              <h2 className="font-[Dancing-Script] text-5xl lg:text-7xl ">
+              <h2 className="text-5xl lg:text-7xl" style={{ fontFamily: "'Dancing Script', cursive" }}>
                 Get In touch
               </h2>
-              <h3 className=" font-[Dancing-Script] text-center text-4xl ">
-                Wow, you made it all the way here! If you’d like to connect or
+              <h3 className="text-center text-4xl" style={{ fontFamily: "'Dancing Script', cursive" }}>
+                Wow, you made it all the way here! If you'd like to connect or
                 get in touch, feel free to reach out to me at:
               </h3>
-              <p className=" font-[Montserrat] text-2xl font-regular ">
+              <p className="text-2xl font-regular" style={{ fontFamily: "'Montserrat', sans-serif" }}>
                 <span className=" font-bold">LinkedIn:</span> linkedin.com/in/dua-fatima-sayani210209
                 <br />
                 <span className=" font-bold">Email:</span> duaf210209@gmail.com
