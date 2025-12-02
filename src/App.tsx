@@ -2,16 +2,17 @@ import { useGSAP } from "@gsap/react";
 import gsap, { ScrollTrigger, SplitText } from "gsap/all";
 import { useRef } from "react";
 import { Projects } from "./Data/Projects";
+import SkillsContainer from "./components/SkillsContainer";
 
 gsap.registerPlugin(ScrollTrigger, SplitText);
 
 function App() {
-  const pinContainer = useRef(null);
-  const heroContainer = useRef(null);
-  const ParentContainer = useRef(null);
-  const AboutParaRef = useRef(null);
-  const projectsContainer = useRef(null);
-  const CertificatesRef = useRef(null);
+  const pinContainer = useRef<HTMLDivElement>(null);
+  const heroContainer = useRef<HTMLDivElement>(null);
+  const ParentContainer = useRef<HTMLDivElement>(null);
+  const AboutParaRef = useRef<HTMLDivElement>(null);
+  const projectsContainer = useRef<HTMLDivElement>(null);
+  const skillsContainer = useRef<HTMLDivElement>(null);
   useGSAP(() => {
     if (
       heroContainer.current &&
@@ -81,6 +82,22 @@ function App() {
         }
       );
     }
+    if (skillsContainer.current){
+      const skills = gsap.utils.toArray("#Skills-Container>div");
+      const tl = gsap.timeline();
+      tl.to(skills, {
+        xPercent: -100,
+        ease: "none",
+        duration: 20,
+        repeat: -1,
+      });
+      skillsContainer.current.addEventListener("mouseenter", () => {
+        tl.pause();
+      });
+      skillsContainer.current.addEventListener("mouseleave", () => {
+        tl.play();
+      });
+    }
   });
 
   return (
@@ -95,6 +112,17 @@ function App() {
               muted
               loop
             ></video>
+            <div
+            ref={skillsContainer}
+              id="Skills-Container"
+              className="w-full h-[10vh] flex justify-between overflow-hidden items-center bg-black/10 backdrop-blur-xl absolute bottom-20 left-0 "
+            >
+              <div className="min-w-screen w-fit flex justify-between p-10 items-center " >
+                <SkillsContainer />
+              </div><div className="min-w-screen w-fit flex justify-between p-10 items-center " >
+                <SkillsContainer />
+              </div>
+            </div>
           </div>
           <div
             ref={ParentContainer}
@@ -212,7 +240,38 @@ function App() {
             })}
           </div>
         </div>
-        <div ref={CertificatesRef} id="Certificates" className="h-screen w-full bg-red-950" >
+        <div
+          id="Certificates"
+          className=" text-white  w-full h-fit flex flex-col justify-between items-center gap-10"
+        >
+          <h2 className="p-32 font-[Dancing-Script] text-5xl lg:text-7xl ">
+            Certificates
+          </h2>
+          <div className="grid grid-cols-1 p-10 md:grid-cols-2 max-w-[1140px] gap-10  ">
+            <div className=" bg-white/40 backdrop-blur-2xl rounded-2xl p-10 flex flex-col gap-10">
+              <h3 className="font-[Dancing-Script] text-2xl  ">
+                CIT - Certificate in Information Technology
+              </h3>
+              <p className="font-[montserrat] text-xl font-thin ">
+                Completed foundational IT training focused on MS Office,
+                documentation, basic Canva design, file organization, and
+                essential computer concepts. This program strengthened my
+                digital basics and gave me confidence with everyday tech tools.
+              </p>
+            </div>
+            <div className=" bg-white/40 backdrop-blur-2xl rounded-2xl p-10 flex flex-col gap-10">
+              <h3 className="font-[Dancing-Script] text-2xl  ">
+                CIT - Certificate in Information Technology
+              </h3>
+              <p className="font-[montserrat] text-xl font-thin ">
+                Completed foundational IT training focused on MS Office,
+                documentation, basic Canva design, file organization, and
+                essential computer concepts. This program strengthened my
+                digital basics and gave me confidence with everyday tech tools.
+              </p>
+            </div>
+          </div>
+          <span className="p-32 font-[Dancing-Script] text-5xl lg:text-7xl "></span>
         </div>
       </main>
     </>
