@@ -301,11 +301,11 @@ function App() {
               loop
             ></video>
           </div>
-          <div id="ContactCard" className=" h-full w-full overflow-hidden text-white bg-[#111111] backdrop-blur-2xl flex flex-row justify-end items-center relative ">
-            <div className="w-full h-full flex flex-col justify-center items-center ">
+          <div id="ContactCard" className=" h-full w-full overflow-hidden text-white bg-[#111111] backdrop-blur-2xl flex flex-col md:flex-row justify-end items-center relative ">
+            <div className="w-full  md:h-full p-10 md:p-20 h-1/2 md:w-full flex flex-col justify-center items-center ">
               <img
                 src="images/Dua.jpg"
-                className=" rounded-[2vw] w-1/2 h-1/2 object-cover "
+                className=" rounded-[50px] w-full h-full  object-cover "
               />
             </div>
             <div className="w-full h-full  flex flex-col justify-center p-20 gap-10 items-center ">
