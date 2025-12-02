@@ -13,6 +13,7 @@ function App() {
   const AboutParaRef = useRef<HTMLDivElement>(null);
   const projectsContainer = useRef<HTMLDivElement>(null);
   const skillsContainer = useRef<HTMLDivElement>(null);
+  const ContactRef = useRef<HTMLDivElement>(null);
   useGSAP(() => {
     if (
       heroContainer.current &&
@@ -82,7 +83,7 @@ function App() {
         }
       );
     }
-    if (skillsContainer.current){
+    if (skillsContainer.current) {
       const skills = gsap.utils.toArray("#Skills-Container>div");
       const tl = gsap.timeline();
       tl.to(skills, {
@@ -98,6 +99,22 @@ function App() {
         tl.play();
       });
     }
+    if (ContactRef.current) {
+      const contactCard = ContactRef.current.querySelector("#ContactCard");
+      gsap.to(contactCard, {
+        scale: 0.6,
+        borderRadius: "50px",
+        backgroundColor: "#ffffff22",
+        color: "#000000cc",
+        scrollTrigger: {
+          trigger: ContactRef.current,
+          start: "top 40%",
+          end: "bottom bottom",
+          scrub: 1,
+        },
+        ease: "power1.inOut",
+        })
+      };
   });
 
   return (
@@ -113,13 +130,14 @@ function App() {
               loop
             ></video>
             <div
-            ref={skillsContainer}
+              ref={skillsContainer}
               id="Skills-Container"
               className="w-full h-[10vh] flex justify-between overflow-hidden items-center bg-black/10 backdrop-blur-xl absolute bottom-20 left-0 "
             >
-              <div className="min-w-screen w-fit flex justify-between p-10 items-center " >
+              <div className="min-w-screen w-fit flex justify-between p-10 items-center ">
                 <SkillsContainer />
-              </div><div className="min-w-screen w-fit flex justify-between p-10 items-center " >
+              </div>
+              <div className="min-w-screen w-fit flex justify-between p-10 items-center ">
                 <SkillsContainer />
               </div>
             </div>
@@ -271,7 +289,41 @@ function App() {
               </p>
             </div>
           </div>
-          <span className="p-32 font-[Dancing-Script] text-5xl lg:text-7xl "></span>
+        </div>
+        <div ref={ContactRef} className=" h-screen w-full relative">
+          <div className="w-full h-full absolute top-0 left-0">
+            <video
+              src="video/Abstaract.mp4"
+              className="w-full h-full object-cover"
+              autoPlay
+              muted
+              loop
+            ></video>
+          </div>
+          <div id="ContactCard" className=" h-full w-full overflow-hidden text-white bg-[#111111] backdrop-blur-2xl flex flex-row justify-end items-center relative ">
+            <div className="w-full h-full flex flex-col justify-center items-center ">
+              <img
+                src="images/Dua.jpg"
+                className=" rounded-[2vw] w-1/2 h-1/2 object-cover "
+              />
+            </div>
+            <div className="w-full h-full  flex flex-col justify-center p-20 gap-10 items-center ">
+              <h2 className="font-[Dancing-Script] text-5xl lg:text-7xl ">
+                Get In touch
+              </h2>
+              <h3 className=" font-[Dancing-Script] text-center text-4xl ">
+                Wow, you made it all the way here! If you’d like to connect or
+                get in touch, feel free to reach out to me at:
+              </h3>
+              <p className=" font-[Montserrat] text-2xl font-regular ">
+                <span className=" font-bold">LinkedIn:</span> linkedin.com/in/dua-fatima-sayani210209
+                <br />
+                <span className=" font-bold">Email:</span> duaf210209@gmail.com
+                <br />
+                <span className=" font-bold">Location:</span> Karachi, Pakistan
+              </p>
+            </div>
+          </div>
         </div>
       </main>
     </>
